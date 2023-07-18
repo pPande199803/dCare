@@ -97,6 +97,23 @@ router.get('/get-doctor/:_id', (req,res)=>{
     })
 })
 
+
+
+router.delete('/:id',(req,res)=>{
+    Doctor.findByIdAndDelete({_id:req.params.id}).exec().then((result)=>{
+        res.status(201).send({
+            message:"Delete Doctor successfully",
+            result
+        })
+    }).catch(err=>{
+        res.status(500).send({
+            message:"Server side error",
+            err
+        })
+    })
+})
+
+
 router.put('/edit-doctor/:id', (req,res)=>{
     console.log(req.params.id)
     // const dID={
